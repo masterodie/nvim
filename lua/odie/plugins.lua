@@ -14,19 +14,18 @@ function()
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'Raimondi/delimitMate'
+
   use {
     'mhinz/vim-startify',
     config = function()
-      require("odie.plugins.startify")
+      require('odie.plugins.startify')
     end
   }
-
-  use 'kyazdani42/nvim-web-devicons'
 
   use {
     'folke/which-key.nvim',
     config = function()
-      require("odie.plugins.which-key")
+      require('odie.plugins.which-key')
     end
   }
 
@@ -34,23 +33,16 @@ function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require("odie.plugins.treesitter")
+      require('odie.plugins.treesitter')
     end
   }
-
-  --[[
-  use {
-  'junegunn/fzf.vim',
-  requires = 'junegunn/fzf'
-  }
-  ]]--
 
   use 'editorconfig/editorconfig-vim'
 
   use {
     'preservim/nerdcommenter',
     config = function()
-      require("odie.plugins.nerdcommenter")
+      require('odie.plugins.nerdcommenter')
     end
   }
 
@@ -58,51 +50,51 @@ function()
     'kyazdani42/nvim-tree.lua',
     config = function()
       require('odie.plugins.nvim-tree')
-    end
+    end,
+    requires = {
+      {'kyazdani42/nvim-web-devicons'}
+    }
   }
 
 
   use 'tpope/vim-fugitive'
   use 'tpope/vim-git'
-  use 'airblade/vim-gitgutter'
-
-  --[[
   use {
-  'ddense-analysis/ale',
-  config = function()
-  require('odie.plugins.ale')
-  end
-
-  BufWritePost,}
-  use {
-  'mfussenegger/nvim-lint',
-  config = function()
-  require('odie.plugins.lint')
-  end
-
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      {'nvim-lua/plenary.nvim'}
+    },
+    config = function()
+      require('gitsigns').setup()
+    end
   }
-  ]]--
 
   use {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
       require('odie.plugins.null-ls')
     end,
-    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+    }
   }
 
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      require("odie.plugins.nvim-lspconfig")
+      require('odie.plugins.nvim-lspconfig')
     end,
-    after = 'null-ls.nvim'
+    requires = {
+      {'jose-elias-alvarez/null-ls.nvim'},
+    }
   }
+
   use 'hrsh7th/cmp-nvim-lsp'
+
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require("odie.plugins.nvim-cmp")
+      require('odie.plugins.nvim-cmp')
     end
   }
 
@@ -110,45 +102,39 @@ function()
   use 'sukima/xmledit'
   use 'mattn/emmet-vim'
 
-  --[[
   use {
-  'vim-airline/vim-airline',
-  config = function ()
-  require('odie.plugins.airline')
-  end,
-  requires = 'vim-airline/vim-airline-themes'
-  }
-  ]]--
-
-  use {
-    "folke/trouble.nvim",
+    'folke/trouble.nvim',
     config = function()
-      require("trouble").setup {
+      require('trouble').setup {
       }
-    end
+    end,
+    requires = {
+      {'kyazdani42/nvim-web-devicons'},
+    }
   }
 
   use {
     'aserowy/tmux.nvim',
     config = function()
-      require("odie.plugins.tmux")
+      require('odie.plugins.tmux')
     end
   }
 
   use 'Coacher/vim-virtualenv'
 
-  use 'edkolev/tmuxline.vim'
-
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
-    -- your statusline
-    config = function() require'odie.galaxyline.theme' end,
+    config = function()
+      require('odie.galaxyline.theme')
+    end,
   }
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+    }
   }
 
 end
