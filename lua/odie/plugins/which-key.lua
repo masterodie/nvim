@@ -27,7 +27,9 @@ wk.register({
     name = "git", -- optional group name
     g = { "<cmd>Git<cr>", "Open Git" }, -- create a binding with label
     s = { "<cmd>Git<cr>", "Open Git" }, -- create a binding with label
-    p = { "<cmd>Git push<cr>", "git push" }, -- create a binding with label
+    p = { "<cmd>Git pull<cr>", "git pull" }, -- create a binding with label
+    P = { "<cmd>Git push<cr>", "git push" }, -- create a binding with label
+
   },
   h = {
     name = "help", -- optional group name
