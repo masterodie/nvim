@@ -72,7 +72,10 @@ g.mapleader = " "
 g.maplocalleader = ","
 g.python3_host_prog = '/usr/bin/python'
 g.python_host_prog = '/usr/bin/python2'
-g.colors_name = 'molokai'
+
+vim.api.nvim_exec([[
+colorscheme molokai
+]], true)
 
 
 vim.api.nvim_exec([[

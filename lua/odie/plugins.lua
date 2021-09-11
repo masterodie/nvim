@@ -70,22 +70,19 @@ function()
   }
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require('odie.plugins.null-ls')
-    end,
-    requires = {
-      {'nvim-lua/plenary.nvim'},
-    }
-  }
-
-  use {
     'neovim/nvim-lspconfig',
     config = function()
       require('odie.plugins.nvim-lspconfig')
     end,
     requires = {
-      {'jose-elias-alvarez/null-ls.nvim'},
+      {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function()
+        end,
+        requires = {
+          {'nvim-lua/plenary.nvim'},
+        }
+      },
     }
   }
 
@@ -120,14 +117,15 @@ function()
     end
   }
 
-  use 'Coacher/vim-virtualenv'
-
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
     config = function()
-      require('odie.galaxyline.theme')
+      require('odie.galaxyline.evilline')
     end,
+    requires = {
+      {'kyazdani42/nvim-web-devicons', opt = true},
+    },
   }
 
   use {
