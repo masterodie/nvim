@@ -63,6 +63,6 @@ wk.register({
     s = { "<C-w>s", "Split window right horizontal"},
     d = { "<C-w>q", "Destroy window"},
   },
-  [','] = { "<cmd>Buffers<cr>", "Find buffers" },
-  ['<space>'] = { "<cmd>Buffers<cr>", "Find buffers" },
+  [','] = { "<cmd>Telescope buffers<cr>", "Find buffers" },
+  ['<space>'] = { "<cmd>Telescope find_files<cr>", "Find buffers" },
 }, { prefix = "<leader>"})
