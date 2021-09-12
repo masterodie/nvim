@@ -83,7 +83,7 @@ function()
           {'nvim-lua/plenary.nvim'},
         }
       },
-    }
+    },
   }
 
   use 'hrsh7th/cmp-nvim-lsp'
@@ -121,7 +121,7 @@ function()
     'glepnir/galaxyline.nvim',
     branch = 'main',
     config = function()
-      require('odie.galaxyline.evilline')
+      require('odie.galaxyline.odie')
     end,
     requires = {
       {'kyazdani42/nvim-web-devicons', opt = true},
