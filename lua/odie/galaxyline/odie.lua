@@ -157,6 +157,15 @@ gls.right[3] = {
 }
 
 gls.right[4] = {
+	BufferType = {
+		provider = "FileTypeName",
+		separator = " ",
+		separator_highlight = { "NONE", colors.section_bg },
+		highlight = { colors.blue, colors.section_bg, "bold" },
+	},
+}
+
+gls.right[5] = {
 	GitIcon = {
 		provider = function()
 			return "  "
@@ -168,7 +177,7 @@ gls.right[4] = {
 	},
 }
 
-gls.right[5] = {
+gls.right[6] = {
 	GitBranch = {
 		provider = "GitBranch",
 		condition = condition.check_git_workspace,
@@ -176,7 +185,7 @@ gls.right[5] = {
 	},
 }
 
-gls.right[6] = {
+gls.right[7] = {
 	DiffAdd = {
 		provider = "DiffAdd",
 		condition = condition.hide_in_width,
@@ -185,7 +194,7 @@ gls.right[6] = {
 	},
 }
 
-gls.right[7] = {
+gls.right[8] = {
 	DiffModified = {
 		provider = "DiffModified",
 		condition = condition.hide_in_width,
@@ -193,7 +202,7 @@ gls.right[7] = {
 		highlight = { colors.orange, colors.section_bg },
 	},
 }
-gls.right[8] = {
+gls.right[9] = {
 	DiffRemove = {
 		provider = "DiffRemove",
 		condition = condition.hide_in_width,
@@ -202,7 +211,7 @@ gls.right[8] = {
 	},
 }
 
-gls.right[9] = {
+gls.right[10] = {
 	RainbowBlue = {
 		provider = function()
 			return "  ▊"

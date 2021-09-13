@@ -1,3 +1,2 @@
-require('odie.plugins')
-require('odie.settings')
-
+require("odie.plugins")
+require("odie.settings")

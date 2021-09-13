@@ -1,7 +1,7 @@
 local null_ls = require("null-ls")
 null_ls.config({
 	debug = true,
-	default_timeout = 10000,
+	default_timeout = 30000,
 	sources = {
 		null_ls.builtins.diagnostics.pylint,
 		null_ls.builtins.diagnostics.eslint,
