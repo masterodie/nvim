@@ -9,6 +9,7 @@ return require("packer").startup(function()
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 	use("tomasr/molokai")
+	use("morhetz/gruvbox")
 
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
@@ -34,6 +35,9 @@ return require("packer").startup(function()
 		config = function()
 			require("odie.plugins.treesitter")
 		end,
+		requires = {
+			{ "windwp/nvim-ts-autotag" },
+		},
 	})
 
 	use("editorconfig/editorconfig-vim")
@@ -73,9 +77,12 @@ return require("packer").startup(function()
 			require("odie.plugins.nvim-lspconfig")
 		end,
 		requires = {
+			{ "3nuc/nvim-lspinstall" },
 			{
 				"jose-elias-alvarez/null-ls.nvim",
-				config = function() end,
+				config = function()
+					require("odie.plugins.null-ls")
+				end,
 				requires = {
 					{ "nvim-lua/plenary.nvim" },
 				},

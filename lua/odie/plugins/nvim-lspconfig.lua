@@ -1,6 +1,5 @@
-local nvim_lsp = require("lspconfig")
-
-require("odie.plugins.null-ls")
+local lspconfig = require("lspconfig")
+local lspinstall = require("lspinstall")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -45,53 +44,71 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-local sumneko_root_path = "/usr/share/lua-language-server"
-local sumneko_binary = "/usr/bin/lua-language-server"
+local function make_config()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	return {
+		flags = { debounce_text_changes = 250 },
+		-- enable snippet support
+		capabilities = capabilities,
+		-- map buffer local keybindings when the language server attaches
+		on_attach = on_attach,
+	}
+end
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server atta:e es
-local servers = {
-	pyright = {},
-	tsserver = {},
-	volar = {},
-	sumneko_lua = {
-		cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-		settings = {
-			Lua = {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-					version = "LuaJIT",
-					-- Setup your lua path
-					path = runtime_path,
-				},
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
-				},
-				workspace = {
-					-- Make the server aware of Neovim runtime files
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				-- Do not send telemetry data containing a randomized but unique identifier
-				telemetry = {
-					enable = false,
-				},
+local lua_settings = {
+	Lua = {
+		runtime = {
+			-- LuaJIT in the case of Neovim
+			version = "LuaJIT",
+			path = vim.split(package.path, ";"),
+		},
+		diagnostics = {
+			-- Get the language server to recognize the `vim` global
+			globals = { "vim" },
+		},
+		workspace = {
+			-- Make the server aware of Neovim runtime files
+			library = {
+				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
 			},
 		},
 	},
-	["null-ls"] = {},
 }
 
-for lsp, options in pairs(servers) do
-	local client = nvim_lsp[lsp]
-	client.setup(vim.tbl_extend("force", {
-		flags = { debounce_text_changes = 150 },
-		on_attach = on_attach,
-	}, options))
+local function setup_servers()
+	lspinstall.setup()
+
+	-- get all installed servers
+	local servers = lspinstall.installed_servers()
+
+	for _, server in pairs(servers) do
+		local config = make_config()
+
+		-- language specific config
+		if server == "lua" then
+			config.settings = lua_settings
+		end
+
+		if server == "html" then
+			config.filetypes = { "html", "htmldjango" }
+		end
+
+		if server == "tailwindcss" then
+			config.filetypes = { "html", "htmldjango", "vue" }
+			config.init_options = { userLanguages = { htmldjango = "html" } }
+		end
+
+		lspconfig[server].setup(config)
+	end
+end
+
+setup_servers()
+
+lspinstall.post_install_hook = function()
+	setup_servers() -- reload installed servers
+	vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
 vim.api.nvim_exec(
