@@ -71,7 +71,12 @@ g.python_host_prog = "/usr/bin/python2"
 
 g.gruvbox_italic = 1
 g.gruvbox_contrast_dark = "hard"
-vim.cmd("colorscheme gruvbox")
+
+g.sonokai_style = "shusia"
+g.sonokai_enable_italic = 1
+g.sonokai_disable_italic_comment = 1
+
+vim.cmd("colorscheme sonokai")
 
 vim.api.nvim_exec(
 	[[

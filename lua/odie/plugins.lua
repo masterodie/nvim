@@ -10,6 +10,7 @@ return require("packer").startup(function()
 	use("wbthomason/packer.nvim")
 	use("tomasr/molokai")
 	use("morhetz/gruvbox")
+	use("sainnhe/sonokai")
 
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")

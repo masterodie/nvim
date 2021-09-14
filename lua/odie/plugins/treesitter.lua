@@ -1,4 +1,7 @@
 local treesitter = require("nvim-treesitter.configs")
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.html.used_by = { "htmldjango", "html_tags" }
 
 treesitter.setup({
 	highlight = {
