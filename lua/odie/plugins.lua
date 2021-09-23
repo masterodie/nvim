@@ -15,6 +15,7 @@ return require("packer").startup(function()
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
 	use("Raimondi/delimitMate")
+	use("direnv/direnv.vim")
 
 	use({
 		"mhinz/vim-startify",
