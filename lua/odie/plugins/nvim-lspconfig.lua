@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local lspinstall = require("lspinstall")
+local lsp_installer = require("nvim-lsp-installer")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -61,55 +61,64 @@ local lua_settings = {
 		runtime = {
 			-- LuaJIT in the case of Neovim
 			version = "LuaJIT",
-			path = vim.split(package.path, ";"),
 		},
 		diagnostics = {
 			-- Get the language server to recognize the `vim` global
 			globals = { "vim" },
 		},
 		workspace = {
-			-- Make the server aware of Neovim runtime files
-			library = {
-				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-			},
+      -- Make the server aware of Neovim runtime files
+      library = vim.api.nvim_get_runtime_file("", true),
 		},
+    -- Do not send telemetry data containing a randomized but unique identifier
+    telemetry = {
+      enable = false,
+    },
 	},
 }
 
-local function setup_servers()
-	lspinstall.setup()
 
-	-- get all installed servers
-	local servers = lspinstall.installed_servers()
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+	local config = make_config()
 
-	for _, server in pairs(servers) do
-		local config = make_config()
-
-		-- language specific config
-		if server == "lua" then
+	-- (optional) Customize the options passed to the server
+	-- if server.name == "tsserver" then
+	--     opts.root_dir = function() ... end
+	-- end
+		if server.name == "lua" then
 			config.settings = lua_settings
 		end
 
-		if server == "html" then
-			config.filetypes = { "html", "htmldjango" }
+		if server.name == "html" then
+			config.filetypes = { "html", "htmldjango", "gohtml" }
 		end
 
-		if server == "tailwindcss" then
-			config.filetypes = { "html", "htmldjango", "vue" }
+		if server.name == "tailwindcss" then
+			config.filetypes = { "html", "htmldjango", "vue", "gohtml", "typescript", "typescriptreact" }
 			config.init_options = { userLanguages = { htmldjango = "html" } }
 		end
 
-		lspconfig[server].setup(config)
-	end
-end
+		if server.name == "cssls" then
+      config.settings = {
+        css  = {
+          lint = {
+            unknownAtRules = "ignore"
+          }
+        },
+        scss  = {
+          lint = {
+            unknownAtRules = "ignore"
+          }
+        }
+      }
+    end
 
-setup_servers()
-
-lspinstall.post_install_hook = function()
-	setup_servers() -- reload installed servers
-	vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+	-- This setup() function is exactly the same as lspconfig's setup function.
+	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	server:setup(config)
+end)
 
 vim.api.nvim_exec(
 	[[

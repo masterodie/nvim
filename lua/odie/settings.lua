@@ -76,7 +76,9 @@ g.sonokai_style = "shusia"
 g.sonokai_enable_italic = 1
 g.sonokai_disable_italic_comment = 1
 
-vim.cmd("colorscheme sonokai")
+vim.cmd("colorscheme gruvbox")
+
+map("n", "<C-p>", ":Telescope find_files<CR>")
 
 vim.api.nvim_exec(
 	[[
@@ -84,6 +86,9 @@ augroup odie_settings
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
   autocmd BufWritePre * :%s/\s\+$//e
+  autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+  autocmd BufWritePre *.go :GoImport
+  autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 augroup END
 ]],
 	true

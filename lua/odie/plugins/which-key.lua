@@ -45,6 +45,7 @@ wk.register({
 		name = "open", -- optional group name
 		f = { "<cmd>NvimTreeToggle<cr>", "Toggle File Explorer" }, -- create a binding with label
 		t = { "<cmd>TroubleToggle<cr>", "Toggle Troube" }, -- create a binding with label
+		d = { "<cmd>DapUiToggle<cr>", "Toggle DAP" }, -- create a binding with label
 	},
 	q = {
 		name = "quit", -- optional group name

@@ -1,6 +1,6 @@
 local null_ls = require("null-ls")
 local lspconfig = require("lspconfig")
-null_ls.config({
+--[[null_ls.config({
 	debug = true,
 	default_timeout = 30000,
 	sources = {
@@ -16,5 +16,6 @@ null_ls.config({
 		null_ls.builtins.formatting.isort,
 	},
 })
+]]--
 
-lspconfig["null-ls"].setup({})
+--lspconfig["null-ls"].setup({})

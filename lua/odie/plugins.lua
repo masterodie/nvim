@@ -15,7 +15,8 @@ return require("packer").startup(function()
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
 	use("Raimondi/delimitMate")
-	use("direnv/direnv.vim")
+
+
 
 	use({
 		"mhinz/vim-startify",
@@ -61,6 +62,13 @@ return require("packer").startup(function()
 		},
 	})
 
+  use({
+    "rcarriga/nvim-dap-ui",
+    requires = {
+      "mfussenegger/nvim-dap",
+    }
+  })
+
 	use("tpope/vim-fugitive")
 	use("tpope/vim-git")
 	use({
@@ -79,7 +87,7 @@ return require("packer").startup(function()
 			require("odie.plugins.nvim-lspconfig")
 		end,
 		requires = {
-			{ "3nuc/nvim-lspinstall" },
+			{ "williamboman/nvim-lsp-installer" },
 			{
 				"jose-elias-alvarez/null-ls.nvim",
 				config = function()
@@ -125,12 +133,32 @@ return require("packer").startup(function()
 		"glepnir/galaxyline.nvim",
 		branch = "main",
 		config = function()
-			require("odie.galaxyline.odie")
+			require("odie.plugins.galaxyline")
 		end,
 		requires = {
 			{ "kyazdani42/nvim-web-devicons", opt = true },
 		},
 	})
+
+	use({
+		'ray-x/go.nvim',
+		config = function()
+			require("odie.plugins.nvim-go")
+		end,
+		requires = {'ray-x/guihua.lua',},
+	})
+
+  --[[
+  use({
+    'crispgm/nvim-go',
+		config = function()
+			require("odie.plugins.nvim-go")
+		end,
+    requires = {
+      { "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
+    },
+  })
+  --]]
 
 	use({
 		"nvim-telescope/telescope.nvim",
