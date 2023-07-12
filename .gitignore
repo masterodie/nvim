@@ -1,5 +1,2 @@
-tmp
-undo
-backup
-
-plugin/packer_compiled.lua
+lua/odie/custom/*
+!lua/odie/custom/.gitkeep
