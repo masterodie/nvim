@@ -7,8 +7,9 @@ return {
       "tpope/vim-rhubarb",
     },
     keys = {
-      { "<leader>gc", "<cmd>Git commit<cr>", desc = "Create [Git] [C]omit" },
-      { "<leader>gs", "<cmd>Nerdtree git_status<cr>", desc = "Show [Git] [S]tatus" },
+      { "<leader>gc", function() vim.cmd.Git("commit") end, desc = "Create Git Commit" },
+      { "<leader>gs", vim.cmd.Git, desc = "Show Git Status" },
+      { "<leader>gP", function() vim.cmd.Git("push") end, desc = "Git Push" },
     },
   },
 }

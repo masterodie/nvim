@@ -9,9 +9,9 @@ return {
       { "MunifTanjim/nui.nvim" },
     },
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle [F]ile [E]xplorer" },
-      { "<leader>fe", "<cmd>Neotree toggle<cr>", desc = "Toggle [F]ile [E]xplorer" },
-      { "<leader>gf", "<cmd>Neotree git_status<cr>", desc = "Toggle [G]it [E]xplorer" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
+      { "<leader>fe", "<cmd>Neotree toggle<cr>", desc = "Toggle File Explorer" },
+      { "<leader>ge", "<cmd>Neotree git_status<cr>", desc = "Toggle Git Explorer" },
     },
     opts = function()
       return {
