@@ -5,6 +5,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/playground",
+      "RRethy/nvim-treesitter-endwise",
+      "windwp/nvim-ts-autotag",
     },
     config = function(_, opts)
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -48,6 +51,9 @@ return {
           enable = true,
         },
         endwise = {
+          enable = true,
+        },
+        autotag = {
           enable = true,
         },
         textobjects = {

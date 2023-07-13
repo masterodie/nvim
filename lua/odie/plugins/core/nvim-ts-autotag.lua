@@ -1,9 +1,8 @@
 return {
   {
     "windwp/nvim-ts-autotag",
-    optional = true,
     opts = {
-      filetype = {
+      filetypes = {
         "html",
         "javascript",
         "typescript",
