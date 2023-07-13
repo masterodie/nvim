@@ -3,10 +3,16 @@ return {
     "aserowy/tmux.nvim",
     lazy = false,
     cond = not vim.g.vscode,
-    config = function()
+    opts = {
+      resize = {
+        resize_step_x = 4,
+        resize_step_y = 2,
+      }
+    },
+    config = function(_, opts)
       local ok, tmux = pcall(require, "tmux")
       if ok then
-        tmux.setup()
+        tmux.setup(opts)
       end
     end,
     keys = function()
