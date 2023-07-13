@@ -1,3 +1,3 @@
 return {
-  { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } }
+  { "tpope/vim-repeat", event = { "BufReadPre", "BufNewFile" } },
 }

@@ -19,7 +19,11 @@ return {
           phpmd = function(source, methods)
             if not null_ls.is_registered(source) then
               vim.tbl_map(function(type)
-                null_ls.register(null_ls.builtins[type][source].with({ extra_args = {"phpmd-ruleset.xml"} }))
+                null_ls.register(
+                  null_ls.builtins[type][source].with({
+                    extra_args = { "phpmd-ruleset.xml" },
+                  })
+                )
               end, methods)
             end
           end,
@@ -28,4 +32,3 @@ return {
     end,
   },
 }
-

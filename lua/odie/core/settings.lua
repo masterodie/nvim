@@ -31,7 +31,7 @@ vim.opt.errorbells = false
 vim.opt.showcmd = true
 
 vim.opt.textwidth = 80
-vim.opt.colorcolumn = {80}
+vim.opt.colorcolumn = { 80 }
 vim.opt.cursorline = true
 
 vim.opt.termguicolors = true
@@ -49,8 +49,8 @@ vim.opt.mousemoveevent = true
 vim.opt.timeoutlen = 150
 
 vim.opt.list = true
-vim.opt.listchars:append "eol:↴"
-vim.opt.listchars:append "space:."
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("space:.")
 
 vim.opt.spell = true
-vim.opt.spelllang={"de","en_us"}
+vim.opt.spelllang = { "de", "en_us" }

@@ -1,3 +1,3 @@
 return {
-  { import = 'odie.plugins.core' }
+  { import = "odie.plugins.core" },
 }
