@@ -54,3 +54,5 @@ vim.opt.listchars:append("space:.")
 
 vim.opt.spell = true
 vim.opt.spelllang = { "de", "en_us" }
+
+vim.opt.laststatus = 3
