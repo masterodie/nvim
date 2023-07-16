@@ -160,8 +160,6 @@ return {
           )
         ),
       })
-
-      ls.config.set_config(opts)
     end,
   },
 }
