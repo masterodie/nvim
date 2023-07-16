@@ -46,8 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
     k.nmap({ "<space>D", vim.lsp.buf.type_definition, opts })
     k.nmap({ "<space>rn", vim.lsp.buf.rename, opts })
-    k.nmap({ "<space>ca", vim.lsp.buf.code_action, opts })
-    k.vmap({ "<space>ca", vim.lsp.buf.code_action, opts })
+    k.map({ {"n", "v"}, "<space>ca", vim.lsp.buf.code_action, opts })
     k.nmap({ "gr", vim.lsp.buf.references, opts })
     k.nmap({
       "<space>fm",

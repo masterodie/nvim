@@ -1,11 +1,19 @@
 local M = {}
 
+M.map = function(args)
+  vim.keymap.set(args[1], args[2], args[3], args[4])
+end
+
 M.nmap = function(args)
-  vim.keymap.set("n", args[1], args[2], args[3])
+  M.map({"n", args[1], args[2], args[3]})
+end
+
+M.imap = function(args)
+  M.map({"i", args[1], args[2], args[3]})
 end
 
 M.vmap = function(args)
-  vim.keymap.set("v", args[1], args[2], args[3])
+  M.map({"v", args[1], args[2], args[3]})
 end
 
 return M
