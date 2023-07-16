@@ -93,6 +93,7 @@ return {
   {
     "mason-nvim-dap.nvim",
     version = "2.*",
+    cmd = { "DapInstall", "DapUninstall" },
     opts = {
       handlers = {}
     }

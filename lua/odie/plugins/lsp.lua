@@ -20,9 +20,17 @@ return {
     version = '1.*',
     cmd = { "Mason" },
     keys = {
-      { "<leader>M", vim.cmd.Mason },
+      { "<leader>M", vim.cmd.Mason, desc = "Manage LSP Plugins" },
     },
-    opts = {},
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
