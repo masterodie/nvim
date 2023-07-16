@@ -2,9 +2,10 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     event = { "ColorScheme" },
+    branch = "v3.x",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
-      { "nvim-tree/nvim-web-devicons" }, -- not strictly required, but recommended
+      { "nvim-tree/nvim-web-devicons" },
       { "MunifTanjim/nui.nvim" },
     },
     keys = {
@@ -13,10 +14,21 @@ return {
       { "<leader>ge", "<cmd>Neotree git_status<cr>", desc = "Toggle Git Explorer" },
     },
     opts = function()
+            vim.fn.sign_define("DiagnosticSignError",
+        {text = " ", texthl = "DiagnosticSignError"})
+      vim.fn.sign_define("DiagnosticSignWarn",
+        {text = " ", texthl = "DiagnosticSignWarn"})
+      vim.fn.sign_define("DiagnosticSignInfo",
+        {text = " ", texthl = "DiagnosticSignInfo"})
+      vim.fn.sign_define("DiagnosticSignHint",
+        {text = "󰌵", texthl = "DiagnosticSignHint"})
+
       return {
+        enable_git_status = true,
+        enable_diagnostics = true,
         source_selector = {
           winbar = true,
-          statusline = false,
+          statusline = true,
           sources = {
             { source = "filesystem", display_name = " 󰉓 Files " },
             { source = "git_status", display_name = " 󰊢 Git " },
