@@ -36,6 +36,9 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
     opts = {
       fps = 60,
       render = "compact",

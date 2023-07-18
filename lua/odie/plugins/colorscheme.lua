@@ -29,12 +29,12 @@ return {
           TelescopeResultsDiffAdd = { fg = fg0 },
           TelescopeResultsDiffChange = { fg = fg0 },
           TelescopeResultsDiffDelete = { fg = fg0 },
+          NotifyBackground = { bg = bg1 },
           NotifyERRORBody = { bg = bg1 },
           NotifyWARNBody = { bg = bg1 },
           NotifyINFOBody = { bg = bg1 },
           NotifyDEBUGBody = { bg = bg1 },
           NotifyTRACEBody = { bg = bg1 },
-          Normal = { guibg = nil, ctermbg = nil },
         },
       })
     end,
