@@ -9,7 +9,7 @@ return {
       "hrsh7th/cmp-emoji",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
-      "f3fora/cmp-spell",
+      "saecki/crates.nvim",
       {
         'tzachar/cmp-fuzzy-path',
         dependencies = { 'tzachar/fuzzy.nvim' }
@@ -65,7 +65,7 @@ return {
         sources = cmp.config.sources({
           { name = "luasnip" },
           { name = "nvim_lsp" },
-          { name = "spell" },
+          { name = "crates" },
           { name = "buffer" },
           { name = "fuzzy_path" },
           { name = "emoji" },

@@ -12,6 +12,7 @@ return {
     cond = not vim.g.vscode,
     config = function()
       require("nvim-dap-virtual-text").setup()
+      require('dap.ext.vscode').load_launchjs(nil, {rt_lldb= {'rust'} })
 
       local colors = require("gruvbox.palette").colors
 

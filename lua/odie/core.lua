@@ -1,4 +1,4 @@
-require("odie.settings")
+vim.g.mapleader = " "
 
 local lazy = require("odie.lazy")
 local file = require("odie.utils.file")
@@ -22,3 +22,5 @@ lazy.setup({
 })
 
 vim.cmd.colorscheme(colorscheme)
+
+require("odie.settings")
