@@ -20,7 +20,6 @@ lazy.setup({
   spec = spec,
 })
 
-
 require("odie.settings")
 require("odie.mappings")
 -- local colorscheme = "gruvbox"

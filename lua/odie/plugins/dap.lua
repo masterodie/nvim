@@ -10,39 +10,17 @@ return {
       "nvim-telescope/telescope-dap.nvim",
     },
     cond = not vim.g.vscode,
-    config = function()
-      require("nvim-dap-virtual-text").setup({})
-      require("dap.ext.vscode").load_launchjs(nil, { rt_lldb = { "rust" } })
-
-      vim.fn.sign_define(
-        "DapBreakpoint",
-        { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
-      )
-      vim.fn.sign_define(
-        "DapBreakpointCondition",
-        { text = "ﳁ", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
-      )
-      vim.fn.sign_define(
-        "DapBreakpointRejected",
-        { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
-      )
-      vim.fn.sign_define(
-        "DapLogPoint",
-        { text = "", texthl = "DapLogPoint", linehl = "", numhl = "DapLogPoint" }
-      )
-      vim.fn.sign_define(
-        "DapStopped",
-        { text = "", texthl = "DapStopped", linehl = "", numhl = "DapStopped" }
-      )
+    config = function(_, opts)
+      require("odie.plugins.plugin-configs.nvim-dap")(_, opts)
     end,
     keys = {
       { "<leader>db", vim.cmd.DapToggleBreakpoint, desc = "Toggle Debug Breakpoint" },
-      { "<leader>dc", vim.cmd.DapContinue, desc = "Debug Continue" },
-      { "<leader>dn", vim.cmd.DapStepOver, desc = "Debug Step Over" },
-      { "<leader>di", vim.cmd.DapStepIn, desc = "Debug Step In" },
-      { "<leader>do", vim.cmd.DapStepOut, desc = "Debug Step Out" },
-      { "<leader>dt", vim.cmd.DapTerminate, desc = "Debug Terminate" },
-      { "<leader>dr", vim.cmd.DapToggleRepl, desc = "Debug Toggle REPL" },
+      { "<leader>dc", vim.cmd.DapContinue,         desc = "Debug Continue" },
+      { "<leader>dn", vim.cmd.DapStepOver,         desc = "Debug Step Over" },
+      { "<leader>di", vim.cmd.DapStepIn,           desc = "Debug Step In" },
+      { "<leader>do", vim.cmd.DapStepOut,          desc = "Debug Step Out" },
+      { "<leader>dt", vim.cmd.DapTerminate,        desc = "Debug Terminate" },
+      { "<leader>dr", vim.cmd.DapToggleRepl,       desc = "Debug Toggle REPL" },
     },
   },
   {
@@ -55,6 +33,7 @@ return {
   {
     "theHamsta/nvim-dap-virtual-text",
     dependencies = { "nvim-treesitter" },
+    opts = {},
   },
   {
     "nvim-telescope/telescope-dap.nvim",
@@ -64,22 +43,12 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
     opts = {},
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
-
-      dapui.setup(opts)
+    config = function(plug, opts)
+      require("odie.plugins.plugin-configs.nvim-dap")(plug, opts)
     end,
     keys = function()
       local ok, _ = pcall(require, "dapui")
