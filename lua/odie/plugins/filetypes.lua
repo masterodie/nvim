@@ -9,10 +9,10 @@ return {
   { "elkowar/yuck.vim", lazy = false },
   {
     "simrat39/rust-tools.nvim",
-    ft = "rust",
+    ft = { "rust", "cpp" },
     opts = function()
       local extension_path = vim.env.HOME
-        .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/"
+          .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/"
       local codelldb_path = extension_path .. "adapter/codelldb"
       local liblldb_path = extension_path .. "lldb/lib/liblldb"
       local this_os = vim.loop.os_uname().sysname
@@ -80,7 +80,6 @@ return {
     },
     config = function()
       local crates = require("crates")
-      local mapopts = { silent = true }
       crates.setup({
         null_ls = {
           enabled = true,
@@ -88,24 +87,35 @@ return {
         },
       })
 
-      vim.keymap.set("n", "<leader>ct", crates.toggle, mapopts)
-      vim.keymap.set("n", "<leader>cr", crates.reload, mapopts)
+      local mapopts = function(desc)
+        return { silent = true, desc = desc }
+      end
 
-      vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, mapopts)
-      vim.keymap.set("n", "<leader>cf", crates.show_features_popup, mapopts)
-      vim.keymap.set("n", "<leader>cd", crates.show_dependencies_popup, mapopts)
+      vim.keymap.set("n", "<leader>pt", crates.toggle, mapopts("Crate Toggle"))
+      vim.keymap.set("n", "<leader>pr", crates.reload, mapopts("Crate Reload"))
 
-      vim.keymap.set("n", "<leader>cu", crates.update_crate, mapopts)
-      vim.keymap.set("v", "<leader>cu", crates.update_crates, mapopts)
-      vim.keymap.set("n", "<leader>ca", crates.update_all_crates, mapopts)
-      vim.keymap.set("n", "<leader>cU", crates.upgrade_crate, mapopts)
-      vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, mapopts)
-      vim.keymap.set("n", "<leader>cA", crates.upgrade_all_crates, mapopts)
+      vim.keymap.set("n", "<leader>pv", crates.show_versions_popup, mapopts("Crate Show Version Popup"))
+      vim.keymap.set("n", "<leader>pf", crates.show_features_popup, mapopts("Crate show features Popup"))
+      vim.keymap.set("n", "<leader>pd", crates.show_dependencies_popup, mapopts("Crate Show Dependency Popup"))
 
-      vim.keymap.set("n", "<leader>cH", crates.open_homepage, mapopts)
-      vim.keymap.set("n", "<leader>cR", crates.open_repository, mapopts)
-      vim.keymap.set("n", "<leader>cD", crates.open_documentation, mapopts)
-      vim.keymap.set("n", "<leader>cC", crates.open_crates_io, mapopts)
+      vim.keymap.set("n", "<leader>pu", crates.update_crate, mapopts("Update Crate"))
+      vim.keymap.set("v", "<leader>pu", crates.update_crates, mapopts("Update Crates"))
+      vim.keymap.set("n", "<leader>pa", crates.update_all_crates, mapopts("Update All Crates"))
+      vim.keymap.set("n", "<leader>pU", crates.upgrade_crate, mapopts("Upgrade Crate"))
+      vim.keymap.set("v", "<leader>pU", crates.upgrade_crates, mapopts("Upgrade Crates"))
+      vim.keymap.set("n", "<leader>pA", crates.upgrade_all_crates, mapopts("Upgrade All Crates"))
+
+      vim.keymap.set("n", "<leader>pH", crates.open_homepage, mapopts("Open Crate Homepage"))
+      vim.keymap.set("n", "<leader>pR", crates.open_repository, mapopts("Open Crate Repository"))
+      vim.keymap.set("n", "<leader>pD", crates.open_documentation, mapopts("Open Crate Documentation"))
+      vim.keymap.set("n", "<leader>pC", crates.open_crates_io, mapopts("Open crates.io for Crate"))
     end,
   },
+  {
+    "Civitasv/cmake-tools.nvim",
+    lazy = false,
+    opts = {
+      cmake_build_directory = "build"
+    }
+  }
 }

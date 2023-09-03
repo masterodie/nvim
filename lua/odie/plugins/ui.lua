@@ -30,11 +30,6 @@ return {
     },
   },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
     "rcarriga/nvim-notify",
     dependencies = {
       "nvim-telescope/telescope.nvim",
@@ -112,7 +107,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = function()
-      local colors = require("gruvbox.palette").colors
+      local colors = require("catppuccin.palettes.mocha")
 
       return {
         sections = {
@@ -135,7 +130,7 @@ return {
             {
               require("lazy.status").updates,
               cond = require("lazy.status").has_updates,
-              color = { fg = colors.faded_orange },
+              color = { fg = colors.red },
             },
             { "progress" },
             { "location" },

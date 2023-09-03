@@ -15,12 +15,15 @@ if custom_plugins_exists then
   table.insert(spec, { import = "odie.custom.plugins" })
 end
 
-local colorscheme = "gruvbox"
+vim.opt.termguicolors = true
 
 lazy.setup({
   spec = spec,
 })
 
-vim.cmd.colorscheme(colorscheme)
 
 require("odie.settings")
+require("odie.mappings")
+-- local colorscheme = "gruvbox"
+local colorscheme = "catppuccin"
+vim.cmd.colorscheme(colorscheme)

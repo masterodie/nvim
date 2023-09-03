@@ -22,31 +22,31 @@ return {
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local opts = { buffer = ev.buf }
-          k.nmap({ "gD", vim.lsp.buf.declaration, opts })
-          k.nmap({ "gd", vim.lsp.buf.definition, opts })
-          k.nmap({ "K", vim.lsp.buf.hover, opts })
-          k.nmap({ "gi", vim.lsp.buf.implementation, opts })
-          k.nmap({ "<leader>k", vim.lsp.buf.signature_help, opts })
-          k.nmap({ "<space>wa", vim.lsp.buf.add_workspace_folder, opts })
-          k.nmap({ "<space>wr", vim.lsp.buf.remove_workspace_folder, opts })
+          local mapopts = function(desc) return k.options({ buffer = ev.buf, desc = desc }) end
+          k.nmap({ "gD", vim.lsp.buf.declaration, mapopts("Goto Declaration") })
+          k.nmap({ "gd", vim.lsp.buf.definition, mapopts("Goto Definition") })
+          k.nmap({ "K", vim.lsp.buf.hover, mapopts("Hover") })
+          k.nmap({ "gi", vim.lsp.buf.implementation, mapopts("Goto Implementation") })
+          k.nmap({ "<leader>k", vim.lsp.buf.signature_help, mapopts("Show Signature Help") })
+          k.nmap({ "<space>wa", vim.lsp.buf.add_workspace_folder, mapopts("Add Workspace Folder") })
+          k.nmap({ "<space>wr", vim.lsp.buf.remove_workspace_folder, mapopts("Remove Workspace Folder") })
           k.nmap({
             "<space>wl",
             function()
               print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             end,
-            opts,
+            mapopts("List Workspace Folders"),
           })
-          k.nmap({ "<space>D", vim.lsp.buf.type_definition, opts })
-          k.nmap({ "<space>rn", vim.lsp.buf.rename, opts })
-          k.map({ { "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts })
-          k.nmap({ "gr", vim.lsp.buf.references, opts })
+          k.nmap({ "<space>D", vim.lsp.buf.type_definition, mapopts("Show Type Definition") })
+          k.nmap({ "<space>rn", vim.lsp.buf.rename, mapopts("Rename") })
+          k.map({ { "n", "v" }, "<space>ca", vim.lsp.buf.code_action, mapopts("Code action") })
+          k.nmap({ "gr", vim.lsp.buf.references, mapopts("Goto references") })
           k.nmap({
             "<space>fm",
             function()
               vim.lsp.buf.format({ async = true })
             end,
-            opts,
+            mapopts("Format Code"),
           })
         end,
       })
@@ -91,6 +91,29 @@ return {
             })
           end,
           ["rust_analyzer"] = function() end,
+          ["clangd"] = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            --- Setup capabilities to support utf-16, since copilot.lua only works with utf-16
+            --- this is a workaround to the limitations of copilot language server
+            capabilities = vim.tbl_deep_extend("force", capabilities, {
+              offsetEncoding = { "utf-16" },
+              general = {
+                positionEncodings = { "utf-16" },
+              },
+            })
+
+            require("lspconfig")["clangd"].setup({
+              capabilities = capabilities,
+              offset_encoding = "utf-16",
+              on_new_config = function(new_config, _)
+                local status, cmake = pcall(require, "cmake-tools")
+                if status then
+                  cmake.clangd_on_new_config(new_config)
+                end
+              end,
+            })
+          end,
         },
       }
     end,

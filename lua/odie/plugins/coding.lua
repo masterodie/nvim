@@ -118,4 +118,9 @@ return {
     opts = {
     },
   },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    event = { "BufReadPre", "BufNewFile" },
+  }
 }

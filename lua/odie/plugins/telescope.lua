@@ -67,6 +67,7 @@ return {
         { "<leader>fb", builtin.buffers, desc = "Find Buffers" },
         { "<leader>fh", builtin.help_tags, desc = "Find Help Tags" },
         { "<leader>fo", builtin.oldfiles, desc = "Search File History" },
+        { "<leader>fM", builtin.man_pages, desc = "Find Man Pages" },
       }
     end,
   },

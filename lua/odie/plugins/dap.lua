@@ -36,13 +36,13 @@ return {
       vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "DapStopped" })
     end,
     keys = {
-      { "<leader>db", vim.cmd.DapToggleBreakpoint, desc = "[D]ebug [B]reakpoint" },
-      { "<leader>dc", vim.cmd.DapContinue, desc = "[D]ebug [C]ontinue" },
-      { "<leader>dn", vim.cmd.DapStepOver, desc = "[D]ebug step o[V]er" },
-      { "<leader>di", vim.cmd.DapStepIn, desc = "[D]ebug step [I]n" },
-      { "<leader>do", vim.cmd.DapStepOut, desc = "[D]ebug step [O]ut" },
-      { "<leader>dt", vim.cmd.DapTerminate, desc = "[D]ebug [T]erminate" },
-      { "<leader>dr", vim.cmd.DapToggleRepl, desc = "[D]ebug Toggle [R]EPL" },
+      { "<leader>db", vim.cmd.DapToggleBreakpoint, desc = "Toggle Debug Breakpoint" },
+      { "<leader>dc", vim.cmd.DapContinue, desc = "Debug Continue" },
+      { "<leader>dn", vim.cmd.DapStepOver, desc = "Debug Step Over" },
+      { "<leader>di", vim.cmd.DapStepIn, desc = "Debug Step In" },
+      { "<leader>do", vim.cmd.DapStepOut, desc = "Debug Step Out" },
+      { "<leader>dt", vim.cmd.DapTerminate, desc = "Debug Terminate" },
+      { "<leader>dr", vim.cmd.DapToggleRepl, desc = "Debug Toggle REPL" },
     },
   },
   {
@@ -86,7 +86,7 @@ return {
           function()
             dapui.toggle()
           end,
-          desc = "[D]ebug [U]I Toggle",
+          desc = "Toggle Debug UI",
         },
       }
     end,
