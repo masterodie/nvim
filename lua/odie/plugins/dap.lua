@@ -11,14 +11,8 @@ return {
     },
     cond = not vim.g.vscode,
     config = function()
-      require("nvim-dap-virtual-text").setup()
-      require('dap.ext.vscode').load_launchjs(nil, {rt_lldb= {'rust'} })
-
-      local colors = require("gruvbox.palette").colors
-
-      vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = colors.neutral_red, bg = colors.dark0 })
-      vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = colors.neutral_blue, bg = colors.dark0 })
-      vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = colors.bright_green, bg = colors.dark0 })
+      require("nvim-dap-virtual-text").setup({})
+      require("dap.ext.vscode").load_launchjs(nil, { rt_lldb = { "rust" } })
 
       vim.fn.sign_define(
         "DapBreakpoint",
@@ -32,8 +26,14 @@ return {
         "DapBreakpointRejected",
         { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
       )
-      vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "", numhl = "DapLogPoint" })
-      vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "DapStopped" })
+      vim.fn.sign_define(
+        "DapLogPoint",
+        { text = "", texthl = "DapLogPoint", linehl = "", numhl = "DapLogPoint" }
+      )
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "", texthl = "DapStopped", linehl = "", numhl = "DapStopped" }
+      )
     end,
     keys = {
       { "<leader>db", vim.cmd.DapToggleBreakpoint, desc = "Toggle Debug Breakpoint" },
@@ -43,6 +43,13 @@ return {
       { "<leader>do", vim.cmd.DapStepOut, desc = "Debug Step Out" },
       { "<leader>dt", vim.cmd.DapTerminate, desc = "Debug Terminate" },
       { "<leader>dr", vim.cmd.DapToggleRepl, desc = "Debug Toggle REPL" },
+    },
+  },
+  {
+
+    "mfussenegger/nvim-dap-python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
     },
   },
   {
@@ -96,7 +103,7 @@ return {
     version = "2.*",
     cmd = { "DapInstall", "DapUninstall" },
     opts = {
-      handlers = {}
-    }
-  }
+      handlers = {},
+    },
+  },
 }

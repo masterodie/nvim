@@ -73,14 +73,6 @@ return {
         show_trailing_blankline_indent = false,
         show_end_of_line = true,
         space_char_blankline = " ",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
         show_current_context = true,
         show_current_context_start = true,
       }
@@ -115,12 +107,21 @@ return {
     "utilyre/sentiment.nvim",
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {
-    },
+    opts = {},
   },
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     opts = {},
     event = { "BufReadPre", "BufNewFile" },
-  }
+  },
+  {
+    "kosayoda/nvim-lightbulb",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = { autocmd = {enabled = true}}
+  },
+  {
+    "weilbith/nvim-code-action-menu",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = "CodeActionMenu",
+  },
 }

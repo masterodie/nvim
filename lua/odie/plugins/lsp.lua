@@ -6,9 +6,7 @@ return {
       "williamboman/mason.nvim",
       "folke/neoconf.nvim",
       "folke/neodev.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "jay-babu/mason-null-ls.nvim",
     },
     config = function()
       local group = vim.api.nvim_create_augroup("UserKeymaps", {})
@@ -16,61 +14,47 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = group,
         callback = function(ev)
-          local k = require("odie.utils.keymaps")
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local mapopts = function(desc)
-            return k.options({ buffer = ev.buf, desc = desc })
-          end
-          k.nmap({ "gD", vim.lsp.buf.declaration, mapopts("Goto Declaration") })
-          k.nmap({ "gd", vim.lsp.buf.definition, mapopts("Goto Definition") })
-          k.nmap({ "K", vim.lsp.buf.hover, mapopts("Hover") })
-          k.nmap({ "gi", vim.lsp.buf.implementation, mapopts("Goto Implementation") })
-          k.nmap({
-            "<leader>k",
-            vim.lsp.buf.signature_help,
-            mapopts("Show Signature Help"),
-          })
-          k.nmap({
-            "<space>wa",
-            vim.lsp.buf.add_workspace_folder,
-            mapopts("Add Workspace Folder"),
-          })
-          k.nmap({
-            "<space>wr",
-            vim.lsp.buf.remove_workspace_folder,
-            mapopts("Remove Workspace Folder"),
-          })
-          k.nmap({
-            "<space>wl",
-            function()
-              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end,
-            mapopts("List Workspace Folders"),
-          })
-          k.nmap({
-            "<space>D",
+          vim.keymap.set(
+            "n",
+            "gD",
+            vim.lsp.buf.declaration,
+            { desc = "Goto Declaration" }
+          )
+          vim.keymap.set(
+            "n",
+            "gd",
+            vim.lsp.buf.definition,
+            { desc = "Goto Defninition" }
+          )
+          vim.keymap.set(
+            "n",
+            "gi",
+            vim.lsp.buf.implementation,
+            { desc = "Goto Implementation" }
+          )
+          vim.keymap.set(
+            "n",
+            "gtd",
             vim.lsp.buf.type_definition,
-            mapopts("Show Type Definition"),
-          })
-          k.nmap({ "<space>rn", vim.lsp.buf.rename, mapopts("Rename") })
-          k.map({
+            { desc = "Show Type Definition" }
+          )
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Goto References" })
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+          vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {desc = "Rename" })
+          vim.keymap.set(
             { "n", "v" },
             "<space>ca",
-            vim.lsp.buf.code_action,
-            mapopts("Code action"),
-          })
-          k.nmap({ "gr", vim.lsp.buf.references, mapopts("Goto references") })
-          k.nmap({
-            "<space>fm",
-            function()
-              vim.lsp.buf.format({ async = true })
-            end,
-            mapopts("Format Code"),
-          })
+            vim.cmd.CodeActionMenu,
+            { desc = "Code action" }
+          )
+          vim.keymap.set("n", "<space>fm", function()
+            vim.lsp.buf.format({ async = true })
+          end, { desc = "Format Code" })
         end,
       })
     end,
@@ -79,9 +63,6 @@ return {
     "williamboman/mason.nvim",
     version = "1.*",
     cmd = { "Mason" },
-    keys = {
-      { "<leader>M", vim.cmd.Mason, desc = "Manage LSP Plugins" },
-    },
     opts = {
       ui = {
         icons = {
@@ -164,5 +145,26 @@ return {
   {
     "creativenull/efmls-configs-nvim",
     dependencies = { "neovim/nvim-lspconfig" },
+  },
+  {
+    "folke/neoconf.nvim",
+    cmd = "Neoconf",
+    dependencies = {
+      "rafi/neoconf-venom.nvim",
+    },
+    opts = {},
+  },
+  {
+    "rafi/neoconf-venom.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      require("venom").setup()
+    end,
+  },
+  {
+    "folke/neodev.nvim",
+    opts = {},
   },
 }

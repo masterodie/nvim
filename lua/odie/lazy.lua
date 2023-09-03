@@ -21,7 +21,6 @@ if not ok then
   return
 end
 
-
 M.default_settings = {
   defaults = {
     lazy = true,
@@ -30,19 +29,38 @@ M.default_settings = {
     enabled = true,
   },
   installer = {
-    colorscheme = { "gruvbox" },
+    colorscheme = { "catppuccin" },
   },
   performance = {
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
+        "2html_plugin",
         "tohtml",
-        "tutor",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
         "zipPlugin",
+        "tutor",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
       },
     },
   },
