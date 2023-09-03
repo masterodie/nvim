@@ -22,14 +22,28 @@ return {
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local mapopts = function(desc) return k.options({ buffer = ev.buf, desc = desc }) end
+          local mapopts = function(desc)
+            return k.options({ buffer = ev.buf, desc = desc })
+          end
           k.nmap({ "gD", vim.lsp.buf.declaration, mapopts("Goto Declaration") })
           k.nmap({ "gd", vim.lsp.buf.definition, mapopts("Goto Definition") })
           k.nmap({ "K", vim.lsp.buf.hover, mapopts("Hover") })
           k.nmap({ "gi", vim.lsp.buf.implementation, mapopts("Goto Implementation") })
-          k.nmap({ "<leader>k", vim.lsp.buf.signature_help, mapopts("Show Signature Help") })
-          k.nmap({ "<space>wa", vim.lsp.buf.add_workspace_folder, mapopts("Add Workspace Folder") })
-          k.nmap({ "<space>wr", vim.lsp.buf.remove_workspace_folder, mapopts("Remove Workspace Folder") })
+          k.nmap({
+            "<leader>k",
+            vim.lsp.buf.signature_help,
+            mapopts("Show Signature Help"),
+          })
+          k.nmap({
+            "<space>wa",
+            vim.lsp.buf.add_workspace_folder,
+            mapopts("Add Workspace Folder"),
+          })
+          k.nmap({
+            "<space>wr",
+            vim.lsp.buf.remove_workspace_folder,
+            mapopts("Remove Workspace Folder"),
+          })
           k.nmap({
             "<space>wl",
             function()
@@ -37,9 +51,18 @@ return {
             end,
             mapopts("List Workspace Folders"),
           })
-          k.nmap({ "<space>D", vim.lsp.buf.type_definition, mapopts("Show Type Definition") })
+          k.nmap({
+            "<space>D",
+            vim.lsp.buf.type_definition,
+            mapopts("Show Type Definition"),
+          })
           k.nmap({ "<space>rn", vim.lsp.buf.rename, mapopts("Rename") })
-          k.map({ { "n", "v" }, "<space>ca", vim.lsp.buf.code_action, mapopts("Code action") })
+          k.map({
+            { "n", "v" },
+            "<space>ca",
+            vim.lsp.buf.code_action,
+            mapopts("Code action"),
+          })
           k.nmap({ "gr", vim.lsp.buf.references, mapopts("Goto references") })
           k.nmap({
             "<space>fm",
@@ -51,10 +74,6 @@ return {
         end,
       })
     end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "williamboman/mason.nvim",
@@ -77,34 +96,47 @@ return {
     "williamboman/mason-lspconfig.nvim",
     version = "1.*",
     opts = function()
+      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       return {
         ensure_installed = {
           "lua_ls",
           "jsonls",
+          "efm",
         },
         handlers = {
           function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup({
+            lspconfig[server_name].setup({
               capabilities = capabilities,
             })
           end,
           ["rust_analyzer"] = function() end,
-          ["clangd"] = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-            --- Setup capabilities to support utf-16, since copilot.lua only works with utf-16
-            --- this is a workaround to the limitations of copilot language server
-            capabilities = vim.tbl_deep_extend("force", capabilities, {
-              offsetEncoding = { "utf-16" },
-              general = {
-                positionEncodings = { "utf-16" },
+          ["efm"] = function()
+            local languages = require("efmls-configs.defaults").languages()
+            local efmls_config = {
+              filetypes = vim.tbl_keys(languages),
+              settings = {
+                rootMarkers = { ".git/" },
+                languages = languages,
               },
-            })
-
-            require("lspconfig")["clangd"].setup({
+              init_options = {
+                documentFormatting = true,
+                documentRangeFormatting = true,
+              },
+            }
+            lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
               capabilities = capabilities,
+            }))
+          end,
+          ["clangd"] = function()
+            local config = {
+              capabilities = vim.tbl_deep_extend("force", capabilities, {
+                offsetEncoding = { "utf-16" },
+                general = {
+                  positionEncodings = { "utf-16" },
+                },
+              }),
               offset_encoding = "utf-16",
               on_new_config = function(new_config, _)
                 local status, cmake = pcall(require, "cmake-tools")
@@ -112,21 +144,12 @@ return {
                   cmake.clangd_on_new_config(new_config)
                 end
               end,
-            })
+            }
+            lspconfig.clangd.setup(config)
           end,
         },
       }
     end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    version = "2.*",
-    opts = {
-      ensure_installed = {
-        "stylua",
-      },
-      handlers = {},
-    },
   },
   {
     "folke/trouble.nvim",
@@ -137,5 +160,9 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
+  },
+  {
+    "creativenull/efmls-configs-nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
   },
 }
