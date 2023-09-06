@@ -1,4 +1,9 @@
-local M = {}
+local M = {
+
+    "Civitasv/cmake-tools.nvim",
+}
+
+M.ft = { "cpp", "c" }
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

@@ -1,4 +1,12 @@
-local M = {}
+local M = {
+  "nvim-lualine/lualine.nvim",
+}
+
+M.event = "ColorScheme"
+
+M.dependencies = {
+  "nvim-tree/nvim-web-devicons",
+}
 
 M.opts = function(_, opts)
   local colors = require("catppuccin.palettes.mocha")

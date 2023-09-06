@@ -1,4 +1,8 @@
-local M = {}
+local M = {
+    "echasnovski/mini.move",
+}
+
+M.event = { "BufReadPre", "BufNewFile" }
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

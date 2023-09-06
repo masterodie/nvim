@@ -1,6 +1,12 @@
-local M = {}
+local M = {
+  "catppuccin/nvim",
+}
 
-M.opts =  function(_, opts)
+M.name = "catppuccin"
+
+M.priority = 1000
+
+M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {
     flavour = "mocha",
     transparent_background = true,

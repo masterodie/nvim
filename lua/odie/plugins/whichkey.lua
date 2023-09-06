@@ -1,7 +1,3 @@
 return {
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
+  require("odie.plugins.configs.which-key"),
 }

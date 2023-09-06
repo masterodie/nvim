@@ -1,6 +1,23 @@
-local M = {}
+local M = {
+  "nvim-treesitter/nvim-treesitter",
+}
+
+M.event = { "BufReadPre", "BufNewFile" }
+
+M.dependencies = {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "nvim-treesitter/playground",
+  "RRethy/nvim-treesitter-endwise",
+  "windwp/nvim-ts-autotag",
+}
+
+M.build = ":TSUpdate"
 
 M.opts = function(_, opts)
+  local orgmode = require("orgmode")
+
+  orgmode.setup_ts_grammar()
+
   return vim.tbl_deep_extend("force", {
     ensure_installed = {
       "vim",
@@ -11,9 +28,11 @@ M.opts = function(_, opts)
       "markdown_inline",
       "vimdoc",
       "query",
+      "org",
     },
     highlight = {
       enable = true,
+      additional_vim_regex_highlighting = { "org" },
     },
     indent = {
       enable = true,

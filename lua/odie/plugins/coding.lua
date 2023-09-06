@@ -1,71 +1,15 @@
 return {
-  {
-    "ethanholz/nvim-lastplace",
-    event = { "BufReadPre" },
-    opts = {},
-  },
-  {
-    "tpope/vim-surround",
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
-    "tpope/vim-repeat",
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
-    "tpope/vim-sleuth",
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
-    "echasnovski/mini.move",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = require("odie.plugins.configs.minimove").opts,
-  },
-  {
-    "echasnovski/mini.pairs",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {},
-  },
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    cond = not vim.g.vscode,
-    opts = require("odie.plugins.configs.vim-illuminate").opts,
-    config = function(_, opts)
-      require("illuminate").configure(opts)
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    cond = not vim.g.vscode,
-    opts = require("odie.plugins.configs.indent-blankline").opts,
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    event = { "BufReadPost", "BufNewFile" },
-    cond = not vim.g.vscode,
-    opts = require("odie.plugins.configs.nvim-colorizer").opts,
-  },
-  {
-    "utilyre/sentiment.nvim",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {},
-  },
-  {
-    "numToStr/Comment.nvim",
-    opts = {},
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
-    "kosayoda/nvim-lightbulb",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = { autocmd = { enabled = true } },
-  },
-  {
-    "weilbith/nvim-code-action-menu",
-    event = { "BufReadPre", "BufNewFile" },
-    cmd = "CodeActionMenu",
-  },
+  require('odie.plugins.configs.minipairs'),
+  require('odie.plugins.configs.minimove'),
+  require('odie.plugins.configs.nvim-lastplace'),
+  require('odie.plugins.configs.vim-surround'),
+  require('odie.plugins.configs.vim-repeat'),
+  require('odie.plugins.configs.vim-sleuth'),
+  require('odie.plugins.configs.vim-illuminate'),
+  require('odie.plugins.configs.indent-blankline'),
+  require('odie.plugins.configs.nvim-colorizer'),
+  require('odie.plugins.configs.sentiment'),
+  require('odie.plugins.configs.Comment'),
+  require('odie.plugins.configs.nvim-lightbulb'),
+  require('odie.plugins.configs.nvim-code-action-menu'),
 }

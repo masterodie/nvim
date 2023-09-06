@@ -1,6 +1,9 @@
-local M = {}
+local M = {
+  "williamboman/mason-lspconfig.nvim",
+  version = "1.*",
+}
 
-M.opts =  function(_, opts)
+M.opts = function(_, opts)
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 

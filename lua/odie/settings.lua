@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.localmapleader = " "
+vim.g.maplocalleader = ","
 
 vim.opt.termguicolors = true
 
@@ -57,3 +57,5 @@ vim.opt.spelllang = { "de", "en_us" }
 vim.opt.helplang = "de"
 
 vim.opt.laststatus = 3
+
+vim.opt.conceallevel = 2

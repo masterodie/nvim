@@ -1,4 +1,10 @@
-local M = {}
+local M = {
+    "rcarriga/nvim-notify",
+}
+
+M.dependencies = {
+  "nvim-telescope/telescope.nvim",
+}
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

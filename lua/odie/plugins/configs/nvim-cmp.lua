@@ -1,4 +1,20 @@
-local M = {}
+local M = {
+    "hrsh7th/nvim-cmp",
+}
+
+M.event = { "InsertEnter", "CmdlineEnter" }
+
+M.dependencies = {
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-emoji",
+  "saadparwaiz1/cmp_luasnip",
+  "L3MON4D3/LuaSnip",
+  "saecki/crates.nvim",
+  "tzachar/cmp-fuzzy-path",
+  "onsails/lspkind.nvim",
+}
 
 M.config = function(_, _)
   local cmp = require("cmp")
@@ -59,6 +75,7 @@ M.config = function(_, _)
     sources = cmp.config.sources({
       { name = "luasnip" },
       { name = "nvim_lsp" },
+      { name = 'orgmode' },
       { name = "crates" },
       { name = "buffer" },
       { name = "fuzzy_path" },

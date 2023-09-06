@@ -1,4 +1,14 @@
-local M = {}
+local M = {
+  "nvim-telescope/telescope.nvim",
+}
+
+M.dependencies = {
+  "nvim-tree/nvim-web-devicons",
+  "nvim-lua/plenary.nvim",
+  "nvim-orgmode/orgmode",
+}
+
+M.event = { "VeryLazy" }
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {
@@ -31,10 +41,10 @@ M.opts = function(_, opts)
       color_devicons = true,
       extensions = {
         fzf = {
-          fuzzy = true,                   -- false will only do exact matching
+          fuzzy = true, -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true,    -- override the file sorter
-          case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+          override_file_sorter = true, -- override the file sorter
+          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         },
       },
     },

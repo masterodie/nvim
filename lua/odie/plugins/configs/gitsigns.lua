@@ -1,4 +1,8 @@
-local M = {}
+local M = {
+    "lewis6991/gitsigns.nvim",
+}
+
+M.event = { "BufReadPost", "BufNewFile" }
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

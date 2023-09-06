@@ -1,4 +1,21 @@
-local M = {}
+local M = {
+  "folke/noice.nvim",
+}
+
+M.event = "VeryLazy"
+
+M.cond = not vim.g.started_by_firenvim
+
+M.dependencies = {
+  "MunifTanjim/nui.nvim",
+  "rcarriga/nvim-notify",
+  "nvim-telescope/telescope.nvim",
+}
+
+M.config = function(_, opts)
+  require("telescope").load_extension("noice")
+  require("noice").setup(opts)
+end
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

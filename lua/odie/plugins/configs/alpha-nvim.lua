@@ -1,4 +1,10 @@
-local M = {}
+local M = {
+  "goolord/alpha-nvim",
+}
+
+M.event = "ColorScheme"
+M.dependencies = { "nvim-web-devicons" }
+M.cond = not vim.g.vscode
 
 M.opts = function(_, opts)
   local config = require("alpha.themes.theta").config
@@ -17,7 +23,6 @@ M.opts = function(_, opts)
       hl = "Type",
     },
   }
-
 
   local buttons = {
     type = "group",

@@ -1,4 +1,10 @@
-local M = {}
+local M = {
+    "RRethy/vim-illuminate",
+}
+
+M.event = { "BufReadPost", "BufNewFile" }
+
+M.cond = not vim.g.vscode
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {
@@ -12,6 +18,10 @@ M.opts = function(_, opts)
       providers = { "lsp" },
     },
   }, opts)
+end
+
+M.config = function(_, opts)
+  require('illuminate').configure(opts)
 end
 
 return M

@@ -1,8 +1,18 @@
-local M = {}
+local M = {
+  "simrat39/rust-tools.nvim",
+}
+
+M.ft = { "rust", "cpp" }
+
+M.dependencies = {
+  "neovim/nvim-lspconfig",
+  "mfussenegger/nvim-dap",
+  "nvim-telescope/telescope.nvim",
+}
 
 M.opts = function(_, opts)
   local extension_path = vim.env.HOME
-      .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/"
+    .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/"
   local codelldb_path = extension_path .. "adapter/codelldb"
   local liblldb_path = extension_path .. "lldb/lib/liblldb"
   local this_os = vim.loop.os_uname().sysname
@@ -63,7 +73,7 @@ end
 M.keys = function(_, keys)
   return vim.tbl_deep_extend("force", {
     { "<leader>ds", vim.cmd.RustDebuggables, desc = "Start Debugging" },
-    { "<leader>dl", vim.cmd.RustLastDebug,   desc = "Start Debugging" },
+    { "<leader>dl", vim.cmd.RustLastDebug, desc = "Start Debugging" },
   }, keys)
 end
 

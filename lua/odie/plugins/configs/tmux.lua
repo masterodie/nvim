@@ -1,4 +1,10 @@
-local M = {}
+local M = {
+    "aserowy/tmux.nvim",
+}
+
+M.lazy = false
+
+M.cond = not vim.g.vscode
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

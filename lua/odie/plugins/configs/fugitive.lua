@@ -1,4 +1,14 @@
-local M = {}
+local M = {
+  "tpope/vim-fugitive",
+}
+
+M.cmd = { "Git" }
+
+M.cond = not vim.g.vscode
+
+M.dependencies = {
+  "tpope/vim-rhubarb",
+}
 
 M.keys = function(_, keys)
   return vim.tbl_deep_extend("force", {

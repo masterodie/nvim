@@ -1,4 +1,15 @@
-local M = {}
+local M = {
+  "nvim-neo-tree/neo-tree.nvim",
+}
+M.event = { "ColorScheme" }
+
+M.branch = "v3.x"
+
+M.dependencies = {
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
+  { "MunifTanjim/nui.nvim" },
+}
 
 M.opts = function(_, opts)
   vim.fn.sign_define(

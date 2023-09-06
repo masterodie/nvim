@@ -1,4 +1,14 @@
-local M = {}
+local M = {
+  "saecki/crates.nvim",
+  tag = "v0.3.0",
+}
+
+M.event = { "BufRead Cargo.toml" }
+
+M.dependencies = {
+  "nvim-lua/plenary.nvim",
+  "jose-elias-alvarez/null-ls.nvim",
+}
 
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {

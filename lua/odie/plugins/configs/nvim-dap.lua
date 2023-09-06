@@ -1,4 +1,18 @@
-local M = {}
+local M = {
+  "mfussenegger/nvim-dap",
+}
+
+M.cmd = { "DapShowLog", "DapContinue", "DapToggleBreakpoint" }
+
+M.dependencies = {
+  "williamboman/mason.nvim",
+  "jay-babu/mason-nvim-dap.nvim",
+  "rcarriga/nvim-dap-ui",
+  "theHamsta/nvim-dap-virtual-text",
+  "nvim-telescope/telescope-dap.nvim",
+}
+
+M.cond = not vim.g.vscode
 
 M.config = function(_, _)
   local dapui = require("dapui")
