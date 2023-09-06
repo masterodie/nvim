@@ -3,9 +3,9 @@ return {
   {
     "simrat39/rust-tools.nvim",
     ft = { "rust", "cpp" },
-    opts = function()
-      return require("odie.plugins.plugin-opts.rust-tools")
-    end,
+    opts = require("odie.plugins.configs.rust-tools").opts,
+    config = require("odie.plugins.configs.rust-tools").config,
+    keys = require("odie.plugins.configs.rust-tools").keys,
     dependencies = {
       "neovim/nvim-lspconfig",
       "mfussenegger/nvim-dap",
@@ -20,13 +20,14 @@ return {
       "nvim-lua/plenary.nvim",
       "jose-elias-alvarez/null-ls.nvim",
     },
-    config = function()
-      require("odie.plugins.plugin-configs.crates")
-    end,
+    opts = require("odie.plugins.configs.crates").opts,
+    config = require("odie.plugins.configs.crates").config,
+    keys = require("odie.plugins.configs.crates").keys,
   },
   {
     "Civitasv/cmake-tools.nvim",
-    lazy = false,
-    opts = require 'odie.plugins.plugin-opts.cmake-tools',
+    ft = { "cpp", "c" },
+    opts = require("odie.plugins.configs.cmake-tools").opts,
+    keys = require("odie.plugins.configs.cmake-tools").keys,
   },
 }

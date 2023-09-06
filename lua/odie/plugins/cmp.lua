@@ -10,14 +10,20 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
       "saecki/crates.nvim",
-      {
-        "tzachar/cmp-fuzzy-path",
-        dependencies = { "tzachar/fuzzy.nvim" },
-      },
-      { "onsails/lspkind.nvim" },
+      "tzachar/cmp-fuzzy-path",
+      "onsails/lspkind.nvim",
     },
-    config = function()
-      require("odie.plugins.plugin-configs.nvim-cmp")
-    end,
+    config = require("odie.plugins.configs.nvim-cmp").config,
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    version = "1.*",
+    config = require("odie.plugins.configs.luasnip").config,
+  },
+  {
+    "tzachar/cmp-fuzzy-path",
+    dependencies = { "tzachar/fuzzy.nvim" },
   },
 }

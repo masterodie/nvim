@@ -8,26 +8,26 @@ return {
       "folke/neodev.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-    config = function()
-      require("odie.autocmds")
-    end,
   },
   {
     "williamboman/mason.nvim",
     version = "1.*",
     cmd = { "Mason" },
-    opts = require("odie.plugins.plugin-opts.mason"),
+    opts = require("odie.plugins.configs.mason").opts,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     version = "1.*",
-    opts = require("odie.plugins.plugin-opts.mason-lspconfig"),
+    opts = require("odie.plugins.configs.mason-lspconfig").opts,
   },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = { "Trouble", "TroubleToggle" },
     opts = {},
+    keys = {
+      { "<leader>xx", vim.cmd.TroubleToggle, desc = "Open diagnostics" },
+    },
   },
   {
     "creativenull/efmls-configs-nvim",
@@ -46,7 +46,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    config = function()
+    config = function(_, _)
       require("venom").setup()
     end,
   },

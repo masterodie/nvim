@@ -9,10 +9,8 @@ return {
       "RRethy/nvim-treesitter-endwise",
       "windwp/nvim-ts-autotag",
     },
-    opts = require("odie.plugins.plugin-opts.nvim-treesitter"),
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    opts = require("odie.plugins.configs.nvim-treesitter").opts,
+    config = require("odie.plugins.configs.nvim-treesitter").config,
     build = ":TSUpdate",
   },
 }

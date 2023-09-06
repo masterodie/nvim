@@ -1,1 +1,1 @@
-require("odie.core")
+require("odie")

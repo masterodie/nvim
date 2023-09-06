@@ -1,3 +1,1 @@
-require("odie.core")
-require("odie.mappings")
-pcall(require, "odie.custom")
+require("odie.core").setup({ colorscheme = "catppuccin" })

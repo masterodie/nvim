@@ -2,35 +2,35 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     opts = {},
-    config = function(_, opts)
-      require("nvim-web-devicons").setup(opts)
-    end,
   },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     cond = not vim.g.started_by_firenvim,
-    opts = require("odie.plugins.plugin-opts.noice"),
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+      "nvim-telescope/telescope.nvim",
     },
+    opts = require("odie.plugins.configs.noice").opts,
+    setup = function(plugin, opts)
+      require("telescope").load_extension("noice")
+      plugin.setup(opts)
+    end,
   },
   {
     "rcarriga/nvim-notify",
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-    opts = require("odie.plugins.plugin-opts.nvim-notify"),
+    opts = require("odie.plugins.configs.nvim-notify").opts,
   },
   {
     "goolord/alpha-nvim",
     event = "ColorScheme",
     dependencies = { "nvim-web-devicons" },
     cond = not vim.g.vscode,
-    opts = function()
-      return require("odie.plugins.plugin-opts.alpha-nvim")
-    end,
+    opts = require("odie.plugins.configs.alpha-nvim").opts,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -38,6 +38,6 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
-    opts = require("odie.plugins.plugin-opts.lualine"),
+    opts = require("odie.plugins.configs.lualine").opts,
   },
 }

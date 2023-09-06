@@ -19,7 +19,7 @@ return {
   {
     "echasnovski/mini.move",
     event = { "BufReadPre", "BufNewFile" },
-    opts = require("odie.plugins.plugin-opts.minimove"),
+    opts = require("odie.plugins.configs.minimove").opts,
   },
   {
     "echasnovski/mini.pairs",
@@ -30,7 +30,7 @@ return {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
     cond = not vim.g.vscode,
-    opts = require("odie.plugins.plugin-opts.vim-illuminate"),
+    opts = require("odie.plugins.configs.vim-illuminate").opts,
     config = function(_, opts)
       require("illuminate").configure(opts)
     end,
@@ -39,13 +39,13 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
     cond = not vim.g.vscode,
-    opts = require("odie.plugins.plugin-opts.indent-blankline"),
+    opts = require("odie.plugins.configs.indent-blankline").opts,
   },
   {
     "NvChad/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
     cond = not vim.g.vscode,
-    opts = require("odie.plugins.plugin-opts.nvim-colorizer"),
+    opts = require("odie.plugins.configs.nvim-colorizer").opts,
   },
   {
     "utilyre/sentiment.nvim",

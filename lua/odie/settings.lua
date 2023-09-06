@@ -1,4 +1,7 @@
 vim.g.mapleader = " "
+vim.g.localmapleader = " "
+
+vim.opt.termguicolors = true
 
 vim.opt.whichwrap:append("b,s,<,>,[,],h,l")
 vim.opt.backspace = "indent,eol,start"
