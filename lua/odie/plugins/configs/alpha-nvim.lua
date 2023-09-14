@@ -10,20 +10,6 @@ M.opts = function(_, opts)
   local config = require("alpha.themes.theta").config
   local dashboard = require("alpha.themes.dashboard")
 
-  local header = {
-    type = "text",
-    val = {
-      [[                 _       ]],
-      [[ ___ ___ ___ _ _|_|_____ ]],
-      [[|   | -_| . | | | |     |]],
-      [[|_|_|___|___|\_/|_|_|_|_|]],
-    },
-    opts = {
-      position = "center",
-      hl = "Type",
-    },
-  }
-
   local buttons = {
     type = "group",
     val = {
@@ -45,8 +31,6 @@ M.opts = function(_, opts)
   }
 
   local layout = {
-    { type = "padding", val = 2 },
-    header,
     { type = "padding", val = 2 },
     buttons,
   }

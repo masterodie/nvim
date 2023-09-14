@@ -59,3 +59,6 @@ vim.opt.helplang = "de"
 vim.opt.laststatus = 3
 
 vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
+
+vim.opt.foldlevel = 0

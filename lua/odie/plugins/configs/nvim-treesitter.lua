@@ -9,14 +9,15 @@ M.dependencies = {
   "nvim-treesitter/playground",
   "RRethy/nvim-treesitter-endwise",
   "windwp/nvim-ts-autotag",
+  "nvim-neorg/neorg",
 }
 
 M.build = ":TSUpdate"
 
 M.opts = function(_, opts)
-  local orgmode = require("orgmode")
+  -- local orgmode = require("orgmode")
 
-  orgmode.setup_ts_grammar()
+  -- orgmode.setup_ts_grammar()
 
   return vim.tbl_deep_extend("force", {
     ensure_installed = {
@@ -28,7 +29,7 @@ M.opts = function(_, opts)
       "markdown_inline",
       "vimdoc",
       "query",
-      "org",
+      -- "org",
     },
     highlight = {
       enable = true,
@@ -75,8 +76,6 @@ M.opts = function(_, opts)
   }, opts)
 end
 
-M.config = function(_, opts)
-  require("nvim-treesitter.configs").setup(opts)
-end
+M.main = "nvim-treesitter.configs"
 
 return M

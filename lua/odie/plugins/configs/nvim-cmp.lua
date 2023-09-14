@@ -14,6 +14,8 @@ M.dependencies = {
   "saecki/crates.nvim",
   "tzachar/cmp-fuzzy-path",
   "onsails/lspkind.nvim",
+  "kristijanhusak/vim-dadbod-completion",
+  "nvim-neorg/neorg",
 }
 
 M.config = function(_, _)
@@ -75,6 +77,7 @@ M.config = function(_, _)
     sources = cmp.config.sources({
       { name = "luasnip" },
       { name = "nvim_lsp" },
+      { name = 'neorg' },
       { name = 'orgmode' },
       { name = "crates" },
       { name = "buffer" },

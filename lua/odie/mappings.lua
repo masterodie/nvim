@@ -4,6 +4,8 @@ end, { desc = "Source current file" })
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
+vim.keymap.set("n", "q:", "<nop>", { noremap = false })
+
 local wk = require("which-key")
 
 wk.register({
@@ -15,4 +17,6 @@ wk.register({
   ["<leader>g"] = { name = "+git" },
   ["<leader>w"] = { name = "+workspace" },
   ["<leader>r"] = { name = "+refactor" },
+  ["<leader>z"] = { name = "+zen" },
+  ["<leader>n"] = { name = "+notes" },
 }, {})

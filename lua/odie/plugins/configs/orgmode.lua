@@ -2,17 +2,12 @@ local M = {
   "nvim-orgmode/orgmode",
 }
 
-M.dependencies = {
-  "akinsho/org-bullets.nvim",
-}
-
 M.lazy = false
 
-M.opts = {}
-
-M.setup = function(_, opts)
-  local orgmode = require("orgmode")
-  orgmode.setup(opts)
-end
+M.opts = {
+  org_agenda_files = { "~/Sync/org/**/*" },
+  org_default_notes_file = "~/Sync/org/notes.org",
+  org_indent_mode = "noindent",
+}
 
 return M

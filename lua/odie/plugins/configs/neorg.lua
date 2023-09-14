@@ -4,19 +4,34 @@ local M = {
 
 M.build = ":Neorg sync-parsers"
 
-M.dependencies = { "nvim-lua/plenary.nvim" }
+M.dependencies = {
+  "nvim-lua/plenary.nvim",
+  "nvim-neorg/neorg-telescope",
+}
 
-M.cmd = { "Neorg " }
+M.lazy = false
+
+-- M.cmd = { "Neorg" }
+
+-- M.ft = "norg"
 
 M.config = function()
-  require("neorg").setup({
+  local neorg = require("neorg")
+  local neorg_callbacks = require("neorg.core.callbacks")
+
+  neorg.setup({
     load = {
       ["core.defaults"] = {}, -- Loads default behaviour
-      ["core.concealer"] = {}, -- Adds pretty icons to your documents
+      ["core.concealer"] = {
+        config = {
+          init_open_folds = "auto",
+        }
+      }, -- Adds pretty icons to your documents
       ["core.dirman"] = { -- Manages Neorg workspaces
         config = {
           workspaces = {
-            notes = "~/Notes"
+            notes = "~/Sync/norg/notes",
+            games = "~/Sync/norg/games",
           },
           default_workspace = "notes"
         },
@@ -26,9 +41,28 @@ M.config = function()
           engine = "nvim-cmp",
         }
       },
-      ["core.summary"] = {}, -- Adds pretty icons to your documents
+      ["core.summary"] = {},
+      ["core.manoeuvre"] = {},
+      ["core.tangle"] = {},
+      ["core.esupports.metagen"] = {
+        config = {
+          type = "auto"
+        }
+      },
+      -- ["core.ui.calendar"] = {},  -- Available with nvim 0.10+
+      ["core.integrations.telescope"] = {},
     },
   })
+
+  neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keys)
+    keys.map_event_to_mode("norg", {
+      n = {
+        { "<leader>fl", "core.integrations.telescope.find_linkable" },
+        { "<leader>fL", "core.integrations.telescope.insert_link" },
+        { "<leader>fF", "core.integrations.telescope.insert_link" },
+      }
+    }, { silent = true, noremap = true })
+  end, function() end)
 end
 
 M.keys = function()

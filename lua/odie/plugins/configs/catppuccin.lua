@@ -9,7 +9,7 @@ M.priority = 1000
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {
     flavour = "mocha",
-    transparent_background = true,
+    transparent_background = false,
     term_colors = true,
     integrations = {
       cmp = true,
@@ -37,6 +37,7 @@ M.opts = function(_, opts)
         colored_indent_levels = true,
       },
       fidget = true,
+      headlines = true,
     },
     custom_highlights = function(colors)
       local bg1 = colors.mantle

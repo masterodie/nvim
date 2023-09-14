@@ -12,4 +12,5 @@ return {
   require('odie.plugins.configs.Comment'),
   require('odie.plugins.configs.nvim-lightbulb'),
   require('odie.plugins.configs.nvim-code-action-menu'),
+  require('odie.plugins.configs.undotree'),
 }

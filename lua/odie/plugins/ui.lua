@@ -4,4 +4,5 @@ return {
   require("odie.plugins.configs.nvim-notify"),
   require("odie.plugins.configs.lualine"),
   require("odie.plugins.configs.nvim-web-devicons"),
+  require("odie.plugins.configs.transparent"),
 }
