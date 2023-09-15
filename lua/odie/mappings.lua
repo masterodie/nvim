@@ -6,6 +6,9 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 vim.keymap.set("n", "q:", "<nop>", { noremap = false })
 
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+
 local wk = require("which-key")
 
 wk.register({

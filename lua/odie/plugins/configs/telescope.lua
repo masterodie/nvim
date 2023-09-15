@@ -5,7 +5,7 @@ local M = {
 M.dependencies = {
   "nvim-tree/nvim-web-devicons",
   "nvim-lua/plenary.nvim",
-  -- "nvim-orgmode/orgmode",
+  "nvim-orgmode/orgmode",
 }
 
 M.event = { "VeryLazy" }

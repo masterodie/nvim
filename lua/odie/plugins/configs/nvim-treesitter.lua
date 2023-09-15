@@ -15,9 +15,9 @@ M.dependencies = {
 M.build = ":TSUpdate"
 
 M.opts = function(_, opts)
-  -- local orgmode = require("orgmode")
+  local orgmode = require("orgmode")
 
-  -- orgmode.setup_ts_grammar()
+  orgmode.setup_ts_grammar()
 
   return vim.tbl_deep_extend("force", {
     ensure_installed = {

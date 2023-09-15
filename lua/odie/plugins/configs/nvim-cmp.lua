@@ -88,6 +88,9 @@ M.config = function(_, _)
 
   local cmdline_config = {
     mapping = cmp.mapping.preset.cmdline(base_mapping),
+    completion = {
+      completeopt = "menu,menuone,noselect",
+    },
     sources = cmp.config.sources({
       { name = "fuzzy_path" },
     }, {
@@ -96,6 +99,9 @@ M.config = function(_, _)
   }
   local search_config = {
     mapping = cmp.mapping.preset.cmdline(base_mapping),
+    completion = {
+      completeopt = "menu,menuone,noselect",
+    },
     sources = {
       { name = "buffer" },
     },
