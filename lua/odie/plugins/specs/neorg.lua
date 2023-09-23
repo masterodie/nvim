@@ -19,6 +19,11 @@ M.config = function()
   local neorg = require("neorg")
   local neorg_callbacks = require("neorg.core.callbacks")
 
+  local workspace_root = vim.env.NORG_ROOT
+  if workspace_root == nil then
+    workspace_root = "~/Sync/norg"
+  end
+
   neorg.setup({
     load = {
       ["core.defaults"] = {}, -- Loads default behaviour
@@ -30,8 +35,7 @@ M.config = function()
       ["core.dirman"] = { -- Manages Neorg workspaces
         config = {
           workspaces = {
-            notes = "~/Sync/norg/notes",
-            games = "~/Sync/norg/games",
+            notes = workspace_root .. "/notes",
           },
           default_workspace = "notes"
         },
@@ -44,6 +48,12 @@ M.config = function()
       ["core.summary"] = {},
       ["core.manoeuvre"] = {},
       ["core.tangle"] = {},
+      ["core.export"] = {
+        config = {
+          export_dir = "~/Sync/notes-export"
+        }
+      },
+      ["core.export.markdown"] = {},
       ["core.esupports.metagen"] = {
         config = {
           type = "auto"
