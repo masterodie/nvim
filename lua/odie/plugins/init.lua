@@ -35,6 +35,7 @@ return {
   require('odie.plugins.specs.fugitive'),
   require('odie.plugins.specs.gitsigns'),
   require('odie.plugins.specs.indent-blankline'),
+  require('odie.plugins.specs.lazygit'),
   require('odie.plugins.specs.mason'),
   require('odie.plugins.specs.mason-lspconfig'),
   require('odie.plugins.specs.minimove'),
