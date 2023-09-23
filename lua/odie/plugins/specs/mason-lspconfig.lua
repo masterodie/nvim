@@ -51,6 +51,17 @@ M.opts = function(_, opts)
       "lua_ls",
       "jsonls",
       "efm",
+      "bashls",
+      "clangd",
+      "cmake",
+      "cssls",
+      "emmet_ls",
+      "gopls",
+      "tsserver",
+      "biome",
+      "pyright",
+      "ruff_lsp",
+      "tailwindcss",
     },
     handlers = {
       function(server_name) -- default handler (optional)
@@ -66,6 +77,11 @@ M.opts = function(_, opts)
           -- Custom languages, or override existing ones
           typescript = {
             require("efmls-configs.formatters.biome"),
+          },
+          go = {
+            require("efmls-configs.formatters.gofumpt"),
+            require("efmls-configs.formatters.goimports"),
+            require("efmls-configs.formatters.golines"),
           },
         })
         local efmls_config = {
@@ -100,6 +116,27 @@ M.opts = function(_, opts)
           end,
         }
         lspconfig.clangd.setup(config)
+      end,
+      ["gopls"] = function()
+        lspconfig.gopls.setup({
+          settings = {
+            gopls = {
+              gofumpt = true,
+              completeUnimported = true,
+              analyses = {
+                unusedparams = true,
+              },
+            },
+          },
+        })
+      end,
+      ["bashls"] = function()
+        lspconfig.bashls.setup({
+          filetypes = {"sh", "zsh"},
+          bashIde = {
+            globPattern = "*@(.sh|.inc|.bash|.command|.zsh)",
+          },
+        })
       end,
     },
   }, opts)

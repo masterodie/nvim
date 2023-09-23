@@ -6,6 +6,8 @@ M.name = "catppuccin"
 
 M.priority = 1000
 
+M.lazy = false -- False if default colorscheme
+
 M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", {
     flavour = "mocha",
@@ -64,6 +66,12 @@ M.opts = function(_, opts)
       }
     end,
   }, opts)
+end
+
+M.config = function(_, opts)
+  local catppucchin = require('catppuccin')
+  catppucchin.setup(opts)
+  vim.cmd.colorscheme("catppuccin-mocha")
 end
 
 return M

@@ -26,7 +26,10 @@ M.config = function(_, opts)
 end
 
 M.keys = function(_, keys)
-  local crates = require("crates")
+  local ok, crates = pcall(require, "crates")
+  if not ok then
+      return {}
+  end
   return vim.tbl_deep_extend("force", {
     { "<leader>pt", crates.toggle, desc = "Crate Toggle" },
     { "<leader>pr", crates.reload, desc = "Crate Reload" },

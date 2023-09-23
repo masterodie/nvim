@@ -13,7 +13,8 @@ return {
     })
 
     require("odie.mappings")
+    require("odie.autocmds")
 
-    vim.cmd.colorscheme(options.colorscheme)
+    -- vim.cmd.colorscheme(options.colorscheme)
   end,
 }

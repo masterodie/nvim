@@ -1,5 +1,3 @@
-local M = {}
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -21,6 +19,8 @@ if not ok then
   return
 end
 
+local M = {}
+
 M.default_settings = {
   defaults = {
     lazy = true,
@@ -29,7 +29,7 @@ M.default_settings = {
     enabled = true,
   },
   installer = {
-    colorscheme = { "catppuccin" },
+    colorscheme = { "catppuccin-mocha" },
   },
   performance = {
     rtp = {
