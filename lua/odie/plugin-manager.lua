@@ -145,7 +145,6 @@ require("lazy").setup({
     },
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        version = "*",
     },
     {
         "theHamsta/nvim-dap-virtual-text",
