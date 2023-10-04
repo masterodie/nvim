@@ -1,4 +1,4 @@
-require("odie.bootstrap")
+require("odie.setleader")
 require("odie.plugin-manager")
 require("odie.settings")
 require("odie.mappings")
