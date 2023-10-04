@@ -1,27 +1,14 @@
-vim.keymap.set("n", "<leader><leader>x", function()
-  vim.cmd([[source %]])
-end, { desc = "Source current file" })
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
-vim.keymap.set("n", "q:", "<nop>", { noremap = false })
+vim.keymap.set("n", "q:", "<nop>", { noremap = true })
 
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-local ok, wk = pcall(require, "which-key")
-
-if ok then
-  wk.register({
-    ["<leader>f"] = { name = "+file" },
-    ["<leader>p"] = { name = "+package" },
-    ["<leader>c"] = { name = "+code" },
-    ["<leader>x"] = { name = "+diagnostics" },
-    ["<leader>d"] = { name = "+debug" },
-    ["<leader>g"] = { name = "+git" },
-    ["<leader>w"] = { name = "+workspace" },
-    ["<leader>r"] = { name = "+refactor" },
-    ["<leader>z"] = { name = "+zen" },
-    ["<leader>n"] = { name = "+notes" },
-  }, {})
-end
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>xd", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>xl", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })

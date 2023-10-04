@@ -1,5 +1,4 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+local indent_size = 4
 
 vim.opt.termguicolors = true
 
@@ -10,8 +9,9 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.smartindent = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = indent_size
+vim.opt.tabstop = indent_size
+vim.opt.softtabstop = indent_size
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -29,8 +29,6 @@ vim.opt.relativenumber = true
 
 vim.opt.visualbell = true
 vim.opt.errorbells = false
-
--- vim.opt.showcmd = true
 
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = { 80 }
@@ -58,7 +56,12 @@ vim.opt.helplang = "de"
 
 vim.opt.laststatus = 3
 
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'nc'
+vim.opt.conceallevel = 0
+vim.opt.concealcursor = "nc"
 
 vim.opt.foldlevel = 0
+
+vim.diagnostic.config({
+    virtual_text = true,
+    severity_sort = true,
+})

@@ -1,1 +1,5 @@
-require("odie")
+require("odie.bootstrap")
+require("odie.plugin-manager")
+require("odie.settings")
+require("odie.mappings")
+require("odie.augroups")

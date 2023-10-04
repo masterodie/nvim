@@ -1,3 +1,6 @@
 {
-    "workspace.checkThirdParty": false
+  "runtime": {
+    "version": "LuaJIT+nvim"
+  },
+  "workspace.checkThirdParty": false
 }
